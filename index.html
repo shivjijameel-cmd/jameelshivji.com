@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jameel Shivji · Actor · Writer · Founder</title>
+<meta name="description" content="Jameel Shivji is a SAG-AFTRA actor, TV writer, and founder. Showrunner of Ali's World Famous Halal Cart; co-founder of HAGS (acquired by Snap)." />
+<meta property="og:title" content="Jameel Shivji" />
+<meta property="og:description" content="Actor · Writer · Founder. Stories about the contradictions that make us human." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%236E222B'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='%23EFE5D3' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Hanken+Grotesk:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#EFE5D3;
+    --paper-2:#E6D6BC;
+    --tan:#C49A5E;
+    --tan-deep:#9A7236;
+    --oxblood:#6E222B;
+    --oxblood-2:#8C2C35;
+    --ink:#2A1B12;
+    --ink-70:rgba(42,27,18,.72);
+    --ink-55:rgba(42,27,18,.55);
+    --ink-40:rgba(42,27,18,.40);
+    --line:rgba(42,27,18,.16);
+    --line-2:rgba(42,27,18,.30);
+
+    --name:"Fraunces",Georgia,serif;
+    --sans:"Hanken Grotesk",system-ui,-apple-system,Segoe UI,sans-serif;
+    --serif:var(--sans);
+    --mono:var(--sans);
+
+    --maxw:1180px;
+    --pad:clamp(1.25rem,5vw,4rem);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:clamp(1rem,0.95rem + 0.25vw,1.12rem);
+    line-height:1.62;
+    font-weight:400;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--oxblood);color:var(--paper);}
+
+  /* film-grain over the background only, content stays crisp */
+  .grain{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    opacity:.05; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .topbar, main, .foot{position:relative; z-index:1;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:30;
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding:1.1rem var(--pad);
+    background:color-mix(in srgb, var(--paper) 86%, transparent);
+    backdrop-filter:blur(9px);
+    border-bottom:1px solid transparent;
+    transition:border-color .4s ease, background .4s ease;
+  }
+  body:not(.on-home) .topbar{ border-bottom-color:var(--line); }
+  .brand{
+    display:block;
+    font-family:var(--serif); font-weight:600; font-size:1.05rem;
+    letter-spacing:-.01em; color:var(--oxblood);
+    transition:opacity .4s ease;
+  }
+  .nav{ display:flex; gap:clamp(1.1rem,3.6vw,2.6rem); align-items:center; }
+  .nav a{
+    position:relative; font-family:var(--mono); font-weight:600;
+    font-size:clamp(.84rem,.74rem + .4vw,1.05rem);
+    text-transform:uppercase; letter-spacing:.14em; color:var(--ink);
+    padding:.3rem 0; transition:color .25s ease;
+  }
+  .nav a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-3px; height:2px;
+    background:var(--oxblood); transform:scaleX(0); transform-origin:left;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .nav a:hover{ color:var(--oxblood); }
+  .nav a:hover::after{ transform:scaleX(1); }
+  .nav a.is-current{ color:var(--oxblood); }
+  .nav a.is-current::after{ transform:scaleX(1); }
+
+  body.on-home .brand{ opacity:0; pointer-events:none; }
+
+  .topbar__social{
+    display:none; align-items:center; gap:.9rem;
+    position:absolute; left:var(--pad); top:50%; transform:translateY(-50%);
+  }
+  body.on-home .topbar__social{ display:flex; }
+  .topbar__social a{ color:var(--oxblood); display:inline-flex; transition:opacity .2s ease; }
+  .topbar__social a:hover{ opacity:.65; }
+  .topbar__social svg{ width:20px; height:20px; }
+
+  /* ---------- views ---------- */
+  main{ min-height:calc(100vh - 64px); }
+  .view{ display:none; }
+  .view.is-active{ display:block; }
+  .view.is-active:not(.view--home){ animation:viewIn .5s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes viewIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:calc(100vh - 66px);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:2rem var(--pad) 4.5rem;
+  }
+  .hero__stack{ display:flex; flex-direction:column; align-items:center; }
+  .hero__word{
+    font-family:var(--name); font-weight:800; color:var(--oxblood);
+    font-size:clamp(3.4rem,15.5vw,14rem); line-height:.8; letter-spacing:-.045em;
+    position:relative; z-index:1; font-optical-sizing:auto;
+  }
+  .hero__word--first{ margin-bottom:clamp(-1.6rem,-2.2vw,-.55rem); }
+  .hero__word--last{ margin-top:clamp(-1.6rem,-2.2vw,-.55rem); }
+
+  .portrait{ position:relative; z-index:2; margin:0; }
+  .portrait__frame{
+    width:clamp(180px,26vw,300px); aspect-ratio:4/5;
+    position:relative; overflow:hidden; border-radius:2px;
+    background:var(--paper-2);
+    box-shadow:0 32px 56px -14px rgba(42,27,18,.52), 0 14px 26px -10px rgba(42,27,18,.34), 0 0 0 1px var(--line-2);
+  }
+  .portrait__frame::after{ /* subtle inner frame line */
+    content:""; position:absolute; inset:9px; border:1px solid rgba(239,229,211,.35);
+    z-index:3; pointer-events:none; border-radius:1px;
+  }
+  .portrait__img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center 28%; z-index:2;
+  }
+  .portrait__fallback{
+    position:absolute; inset:0; z-index:1;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:.6rem; background:
+      radial-gradient(120% 90% at 50% 12%, var(--tan) 0%, var(--paper-2) 60%);
+    font-family:var(--serif); font-weight:700; font-size:3.4rem; color:var(--oxblood);
+  }
+  .portrait__fallback small{
+    font-family:var(--mono); font-weight:400; font-size:.6rem; color:var(--tan-deep);
+    text-transform:uppercase; letter-spacing:.18em; text-align:center; padding:0 1rem;
+  }
+  .portrait__cap{
+    margin:.85rem 0 0; font-family:var(--mono); font-size:.64rem;
+    text-transform:uppercase; letter-spacing:.22em; color:var(--ink-40);
+  }
+
+  .hero__meta{ margin-top:clamp(1.6rem,3.5vw,2.6rem); }
+  .hero__roles{
+    margin:0 0 .85rem; font-family:var(--sans); font-weight:700;
+    font-size:clamp(1.05rem,.92rem + .6vw,1.45rem); letter-spacing:.05em; color:var(--oxblood);
+  }
+  .hero__tagline{
+    margin:0 auto; max-width:34ch;
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:clamp(.95rem,.88rem + .4vw,1.18rem); line-height:1.4; color:var(--ink-70);
+  }
+  .hero__cred{
+    margin:1.1rem 0 0; font-family:var(--mono); font-size:clamp(.64rem,.6rem + .2vw,.74rem);
+    text-transform:uppercase; letter-spacing:.18em; color:var(--ink-55);
+  }
+
+  /* hero entrance stagger */
+  .view--home.is-active .hero__word--first{ animation:rise .8s .05s both; }
+  .view--home.is-active .portrait{ animation:rise .8s .2s both; }
+  .view--home.is-active .hero__word--last{ animation:rise .8s .12s both; }
+  .view--home.is-active .hero__meta{ animation:rise .8s .35s both; }
+  @keyframes rise{ from{opacity:0; transform:translateY(22px);} to{opacity:1; transform:none;} }
+
+  /* desktop: name flanks the photo horizontally, tagline tucks underneath */
+  @media(min-width:820px){
+    .hero__stack{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:clamp(.75rem,2vw,1.75rem); }
+    .hero__word{ font-size:clamp(3.5rem,9vw,8.5rem); line-height:.86; }
+    .hero__word--first{ margin:0; text-align:right; }
+    .hero__word--last{ margin:0; text-align:left; }
+    .portrait__frame{ width:clamp(210px,24vw,290px); }
+    .hero__meta{ margin-top:clamp(1.1rem,2.4vw,1.9rem); }
+  }
+
+  /* scroll cue */
+  .scrolldown{
+    position:absolute; left:0; right:0; bottom:clamp(1.2rem,3.2vh,2.2rem);
+    width:max-content; margin-inline:auto;
+    display:inline-flex; flex-direction:column; align-items:center; gap:.6rem;
+    font-family:var(--sans); font-weight:700; font-size:.8rem;
+    text-transform:uppercase; letter-spacing:.22em; color:var(--oxblood);
+    transition:color .25s ease;
+  }
+  .scrolldown:hover{ color:var(--oxblood-2); }
+  .scrolldown__chev{
+    width:44px; height:44px; border-radius:999px; border:1.6px solid var(--oxblood);
+    display:flex; align-items:center; justify-content:center;
+    animation:bob 1.5s ease-in-out infinite; transition:background .25s ease, color .25s ease;
+  }
+  .scrolldown:hover .scrolldown__chev{ background:var(--oxblood); color:var(--paper); }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
+  .view--home.is-active .scrolldown{ animation:rise .8s .5s both; }
+
+  /* ---------- RECENTLY ---------- */
+  .recently{
+    border-top:1px solid var(--line);
+    padding:clamp(2.6rem,6vw,4.5rem) 0 clamp(3rem,7vw,5rem);
+    scroll-margin-top:80px;
+  }
+  .recently__head{
+    max-width:var(--maxw); margin:0 0 clamp(1.5rem,3vw,2.3rem); padding:0 var(--pad);
+    display:flex; flex-direction:column; gap:.55rem;
+  }
+  .recently__eyebrow{
+    font-family:var(--sans); font-weight:600; font-size:.72rem;
+    text-transform:uppercase; letter-spacing:.24em; color:var(--oxblood);
+    display:flex; align-items:center; gap:.7rem;
+  }
+  .recently__eyebrow::before{ content:""; width:1.8rem; height:1px; background:var(--oxblood); }
+  .recently__title{
+    margin:0; font-family:var(--sans); font-weight:700; color:var(--ink);
+    font-size:clamp(1.8rem,1rem + 2.6vw,3rem); letter-spacing:-.025em; line-height:1.05;
+  }
+
+  .reel{
+    display:flex; gap:clamp(1rem,2vw,1.5rem);
+    overflow-x:auto; overflow-y:hidden;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    padding:.4rem var(--pad) 1.4rem;
+    padding-left:calc(var(--pad) - clamp(1.4rem,2.6vw,1.9rem));
+    scroll-padding-left:calc(var(--pad) - clamp(1.4rem,2.6vw,1.9rem));
+    scrollbar-width:thin; scrollbar-color:var(--tan-deep) transparent;
+  }
+  .reel::-webkit-scrollbar{ height:8px; }
+  .reel::-webkit-scrollbar-thumb{ background:var(--tan-deep); border-radius:99px; }
+  .reel::-webkit-scrollbar-track{ background:rgba(42,27,18,.08); border-radius:99px; }
+
+  .card{
+    scroll-snap-align:start; flex:0 0 auto;
+    width:min(82vw,340px);
+    background:var(--paper); border:1px solid var(--line); border-radius:8px;
+    padding:clamp(1.4rem,2.6vw,1.9rem);
+    display:flex; flex-direction:column; gap:.7rem;
+    transition:border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+  }
+  .card:hover{ border-color:var(--line-2); box-shadow:0 14px 30px -16px rgba(42,27,18,.4); transform:translateY(-3px); }
+  .card--feature{
+    width:min(90vw,540px); background:var(--paper-2); border-color:rgba(154,114,54,.42);
+  }
+  .card--cta{
+    align-items:center; justify-content:center; text-align:center;
+    background:var(--paper-2); border-color:rgba(154,114,54,.42); gap:1rem;
+  }
+  .card--cta .card__title{ font-size:clamp(1.3rem,1.05rem + .7vw,1.6rem); }
+  .card--cta .card__blurb{ max-width:32ch; }
+  .card--cta .btn{ align-self:center; }
+  .card__tag{
+    font-family:var(--sans); font-weight:600; font-size:.7rem;
+    text-transform:uppercase; letter-spacing:.13em; color:var(--tan-deep);
+  }
+  .card__title{
+    margin:0; font-family:var(--sans); font-weight:700; color:var(--ink);
+    font-size:clamp(1.25rem,1.05rem + .7vw,1.6rem); letter-spacing:-.02em; line-height:1.15;
+  }
+  .card--feature .card__title{ font-size:clamp(1.5rem,1.1rem + 1.4vw,2.1rem); }
+  .card__blurb{ margin:0; color:var(--ink-70); line-height:1.55; font-size:.97rem; }
+  .card__facts{
+    margin:.1rem 0 0; font-family:var(--sans); font-weight:500; font-size:.8rem;
+    color:var(--ink-55); letter-spacing:.01em;
+  }
+  .card__btn{
+    margin-top:auto; align-self:flex-start;
+    display:inline-flex; align-items:center; gap:.45rem;
+    font-family:var(--sans); font-weight:600; font-size:.88rem; letter-spacing:.01em;
+    color:var(--oxblood); border:1.5px solid var(--oxblood); border-radius:999px;
+    padding:.5rem 1.05rem; transition:background .25s ease, color .25s ease;
+  }
+  .card__btn span{ transition:transform .25s ease; }
+  .card__btn:hover{ background:var(--oxblood); color:var(--paper); }
+  .card__btn:hover span{ transform:translateX(3px); }
+
+  /* ---------- RICH TAB COMPONENTS ---------- */
+  .inline-link{ color:var(--oxblood); border-bottom:1px solid rgba(110,34,43,.35); padding-bottom:1px; transition:border-color .2s ease; }
+  .inline-link:hover{ border-color:var(--oxblood); }
+  .about__lead{
+    margin:clamp(1.1rem,2.5vw,1.8rem) 0 1.3rem; max-width:88%;
+    font-family:var(--sans); font-weight:700; color:var(--ink);
+    font-size:clamp(1.5rem,1.1rem + 1.9vw,2.6rem); line-height:1.18; letter-spacing:-.022em;
+  }
+  .about__lead em{ font-family:var(--serif); font-style:italic; font-weight:500; color:var(--oxblood); }
+  .about__list{ list-style:none; margin:.9rem 0 0; padding:0; display:flex; flex-direction:column; gap:.65rem; max-width:64ch; }
+  .about__list li{ position:relative; padding-left:1.9rem; color:var(--ink-70); line-height:1.55; }
+  .about__list li::before{ content:"↳"; position:absolute; left:0; top:-.05em; color:var(--oxblood); font-size:1.1em; }
+  .plus-fun{
+    display:inline-block; font-family:var(--name); font-weight:800; color:var(--oxblood);
+    line-height:1; transform:scale(1.3) rotate(-9deg); margin:0 .05em; vertical-align:-.05em;
+  }
+  .about-layout{ display:flex; flex-direction:column; gap:clamp(2.4rem,5vw,3.5rem); }
+  .about-text{ min-width:0; }
+  .about-collage{
+    position:relative;
+    display:flex; flex-wrap:wrap;
+    padding:1rem clamp(1rem,3vw,2.2rem) 2rem clamp(.5rem,2vw,1.2rem);
+  }
+  .about-collage__tile{
+    position:relative; overflow:hidden; border-radius:5px;
+    background:var(--paper-2);
+    box-shadow:0 18px 34px -18px rgba(42,27,18,.5), 0 0 0 6px var(--paper);
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease;
+  }
+  .about-collage__tile:hover{ transform:scale(1.08) rotate(0deg) !important; box-shadow:0 22px 40px -16px rgba(42,27,18,.55), 0 0 0 6px var(--paper); z-index:9; }
+  .about-collage__tile img{ display:block; width:100%; height:100%; object-fit:cover; }
+  .about-collage__tile{ width:47%; aspect-ratio:4/5; }
+  .about-collage__tile:nth-child(1){ width:58%; margin:0 -8% 1.6rem 0; transform:rotate(-5deg); }
+  .about-collage__tile:nth-child(2){ width:42%; margin:2.4rem 0 0 -6%; transform:rotate(4deg); }
+  .about-collage__tile:nth-child(3){ width:40%; margin:-1rem -4% 0 6%; transform:rotate(-4deg); }
+  .about-collage__tile:nth-child(4){ width:38%; margin:2.2rem 0 0 2%; transform:rotate(6deg); }
+  .about-collage__tile:nth-child(5){ width:44%; margin:-1.8rem 0 0 4%; transform:rotate(-7deg); z-index:3; }
+  .about-collage__tile:nth-child(6){ width:36%; margin:2.4rem 0 0 10%; transform:rotate(5deg); }
+  .about-collage__tile:nth-child(7){ width:40%; margin:.8rem 2% 0 8%; transform:rotate(-3deg); }
+  .about-collage__tile:nth-child(8){ width:36%; margin:-.6rem 0 0 0; transform:rotate(6deg); }
+  @media(min-width:960px){
+    .about-layout{ flex-direction:row; align-items:flex-start; gap:clamp(2rem,4vw,4.5rem); }
+    .about-text{ flex:1 1 54%; }
+    .about-collage{ flex:1 1 46%; padding-top:2rem; }
+  }
+  @media(max-width:520px){
+    .about-collage__tile{ width:60% !important; margin:-1rem 0 1.6rem -2% !important; }
+    .about-collage__tile:nth-child(even){ margin-left:20% !important; }
+  }
+
+  .worktabs{
+    display:flex; flex-wrap:wrap; gap:clamp(1.6rem,3.4vw,2.4rem);
+    margin-top:clamp(1.8rem,4vw,2.6rem); border-bottom:1px solid var(--line);
+  }
+  .worktab{
+    font-family:var(--sans); font-weight:600; font-size:.92rem; letter-spacing:.03em;
+    text-transform:uppercase;
+    color:var(--ink-55); background:none; border:none; border-radius:0;
+    padding:0 0 .85rem; margin:0; cursor:pointer; position:relative;
+    transition:color .2s ease;
+  }
+  .worktab::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px;
+    background:var(--oxblood); transform:scaleX(0); transform-origin:left;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1);
+  }
+  .worktab.is-active{ color:var(--oxblood); }
+  .worktab.is-active::after{ transform:scaleX(1); }
+  .worktab:not(.is-active):hover{ color:var(--ink); }
+  .workpanel{ display:none; }
+  .workpanel.is-active{ display:block; animation:viewIn .42s cubic-bezier(.2,.7,.2,1) both; }
+
+  .subhead{
+    margin:clamp(2.4rem,5vw,3.4rem) 0 0; font-family:var(--sans); font-weight:700;
+    font-size:1rem; text-transform:uppercase; letter-spacing:.16em; color:var(--ink);
+    display:flex; align-items:center; gap:.9rem;
+  }
+  .subhead::after{ content:""; flex:1; height:1px; background:var(--line); }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:.55rem; margin-top:.2rem; }
+  .chip{
+    display:inline-flex; align-items:center; gap:.45rem;
+    font-family:var(--sans); font-weight:600; font-size:.84rem; color:var(--oxblood);
+    border:1.5px solid rgba(110,34,43,.4); border-radius:999px; padding:.45rem .95rem;
+    transition:background .22s,color .22s,border-color .22s; word-break:break-word;
+  }
+  a.chip:hover{ background:var(--oxblood); color:var(--paper); border-color:var(--oxblood); }
+  .chip svg{ width:14px; height:14px; flex:none; }
+  .note{ margin:.7rem 0 0; font-size:.82rem; color:var(--ink-40); font-style:italic; }
+
+  /* representation bar (acting) */
+  .metabar{ display:flex; flex-wrap:wrap; align-items:center; gap:.7rem 1.3rem; margin-top:1.5rem; }
+  .metabar__item{ font-family:var(--sans); font-weight:600; font-size:.72rem; text-transform:uppercase; letter-spacing:.14em; color:var(--ink-55); }
+  .metabar__item b{ color:var(--ink); font-weight:700; }
+  .repbar{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(185px,1fr)); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden;
+    margin-top:clamp(1.4rem,3vw,2rem);
+  }
+  .rep{ background:var(--paper); padding:1.2rem 1.3rem; display:flex; flex-direction:column; }
+  .rep__label{ font-family:var(--sans); font-weight:600; font-size:.62rem; text-transform:uppercase; letter-spacing:.15em; color:var(--ink-55); }
+  .rep__name{ font-family:var(--sans); font-weight:700; font-size:1.02rem; color:var(--ink); margin-top:.25rem; line-height:1.15; }
+  .rep__person{ font-size:.82rem; color:var(--ink-70); margin-top:.1rem; }
+  .rep__link{ margin-top:.5rem; font-family:var(--sans); font-weight:600; font-size:.82rem; color:var(--oxblood); border-bottom:1px solid rgba(110,34,43,.35); align-self:flex-start; padding-bottom:1px; transition:border-color .2s; word-break:break-word; }
+  .rep__link:hover{ border-color:var(--oxblood); }
+
+  /* credit tiles (acting) */
+  .creditgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(214px,1fr)); gap:clamp(.7rem,1.4vw,1rem); margin-top:clamp(1.1rem,2vw,1.5rem); }
+  .credit{
+    background:var(--paper); border:1px solid var(--line); border-radius:9px;
+    padding:1.15rem 1.2rem; display:flex; flex-direction:column; gap:.5rem;
+    transition:border-color .22s, transform .22s, box-shadow .22s;
+  }
+  .credit:hover{ border-color:var(--line-2); transform:translateY(-2px); box-shadow:0 12px 26px -18px rgba(42,27,18,.45); }
+  .credit__net{ font-family:var(--sans); font-weight:600; font-size:.64rem; text-transform:uppercase; letter-spacing:.14em; color:var(--tan-deep); }
+  .credit__title{ margin:0; font-family:var(--sans); font-weight:700; font-size:1.12rem; letter-spacing:-.012em; line-height:1.12; color:var(--ink); }
+  .credit__role{ margin:0; font-size:.88rem; color:var(--ink-70); }
+  .credit__role b{ color:var(--ink); font-weight:600; }
+  .rtype{
+    margin-top:auto; align-self:flex-start; display:inline-block;
+    font-family:var(--sans); font-weight:700; font-size:.6rem; text-transform:uppercase; letter-spacing:.1em;
+    padding:.32rem .58rem; border-radius:999px;
+    background:rgba(110,34,43,.08); color:var(--oxblood); border:1px solid rgba(110,34,43,.28);
+  }
+  .rtype--top{ background:var(--oxblood); color:var(--paper); border-color:var(--oxblood); }
+  .rtype--mid{ background:var(--tan); color:#3a2410; border-color:rgba(154,114,54,.55); }
+
+  /* project cards (writer / founder) */
+  .proj{
+    margin-top:clamp(1.3rem,2.6vw,2rem);
+    background:var(--paper); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    display:grid; grid-template-columns:1fr;
+  }
+  .proj--feature{ background:var(--paper-2); border-color:rgba(154,114,54,.45); }
+  .proj__media{
+    position:relative; min-height:190px; aspect-ratio:4/3;
+    background:linear-gradient(140deg, var(--tan) 0%, var(--paper-2) 78%);
+    display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--line);
+  }
+  .proj__media span{
+    font-family:var(--sans); font-weight:600; font-size:.66rem; text-transform:uppercase; letter-spacing:.18em;
+    color:var(--tan-deep); display:inline-flex; align-items:center; gap:.5rem;
+  }
+  .proj__media--img{ background:transparent; padding:0; min-height:0; }
+  .proj__media--img img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .proj__body{ padding:clamp(1.5rem,3vw,2.3rem); display:flex; flex-direction:column; gap:.85rem; }
+  .proj__tag{ font-family:var(--sans); font-weight:700; font-size:.7rem; text-transform:uppercase; letter-spacing:.13em; color:var(--oxblood); }
+  .proj__title{ margin:0; font-family:var(--sans); font-weight:800; color:var(--ink); font-size:clamp(1.5rem,1.1rem + 1.5vw,2.2rem); letter-spacing:-.025em; line-height:1.05; }
+  .proj__role{ margin:0; font-weight:600; color:var(--ink-70); font-size:.95rem; }
+  .proj__desc{ margin:0; color:var(--ink-70); line-height:1.6; }
+  .proj__desc b{ color:var(--ink); font-weight:700; }
+  @media(min-width:760px){
+    .proj{ grid-template-columns:300px 1fr; }
+    .proj__media{ border-bottom:none; border-right:1px solid var(--line); aspect-ratio:auto; }
+  }
+  .projstats{ display:flex; flex-wrap:wrap; gap:1.7rem; margin-top:.3rem; }
+  .projstat b{ display:block; font-family:var(--sans); font-weight:800; font-size:clamp(1.5rem,1.1rem + 1.4vw,2.1rem); color:var(--oxblood); line-height:1; letter-spacing:-.02em; }
+  .projstat span{ display:block; font-size:.64rem; text-transform:uppercase; letter-spacing:.12em; color:var(--ink-55); margin-top:.35rem; }
+
+  /* spotify episode embeds */
+  .episodes{ display:flex; flex-direction:column; gap:clamp(1rem,2.2vw,1.5rem); margin-top:clamp(1.2rem,2.5vw,1.7rem); }
+  .episode{
+    display:grid; grid-template-columns:1fr; gap:1.1rem;
+    background:var(--paper); border:1px solid var(--line); border-radius:14px;
+    padding:clamp(1.1rem,2.2vw,1.4rem);
+    transition:border-color .25s ease, box-shadow .25s ease;
+  }
+  .episode:hover{ border-color:var(--line-2); box-shadow:0 14px 30px -20px rgba(42,27,18,.4); }
+  .episode__player{ min-width:0; }
+  .episode__player iframe{ display:block; width:100%; border:0; }
+  .episode__info{ display:flex; flex-direction:column; gap:.4rem; }
+  .episode__title{ margin:0; font-family:var(--sans); font-weight:700; font-size:1.12rem; letter-spacing:-.01em; color:var(--ink); }
+  .episode__meta{ margin:0; font-family:var(--sans); font-weight:600; font-size:.68rem; text-transform:uppercase; letter-spacing:.13em; color:var(--tan-deep); }
+  .episode__desc{ margin:.15rem 0 0; color:var(--ink-70); line-height:1.55; font-size:.92rem; }
+  @media(min-width:760px){
+    .episode{ grid-template-columns:360px 1fr; gap:1.5rem; align-items:center; }
+  }
+
+  /* youtube reel embed */
+  .reel-embed{
+    position:relative; margin-top:clamp(1.2rem,2.5vw,1.7rem); max-width:760px;
+    aspect-ratio:16/9; border-radius:14px; overflow:hidden;
+    border:1px solid var(--line); background:var(--ink); box-shadow:0 18px 40px -24px rgba(42,27,18,.5);
+  }
+  .reel-embed iframe{ display:block; width:100%; height:100%; border:0; }
+  .reel-embed__btn{
+    position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; cursor:pointer;
+    background:#160e08; display:flex; align-items:center; justify-content:center;
+  }
+  .reel-embed__thumb{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .reel-embed__play{
+    position:relative; z-index:1; width:66px; height:66px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(110,34,43,.92); color:var(--paper);
+    box-shadow:0 8px 24px -6px rgba(0,0,0,.5); transition:transform .2s, background .2s;
+  }
+  .reel-embed__btn:hover .reel-embed__play{ transform:scale(1.08); background:var(--oxblood); }
+  .reel-embed__alt{ margin:.7rem 0 0; font-family:var(--sans); font-size:.82rem; }
+  .reel-embed__alt a{ color:var(--oxblood); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(110,34,43,.35); }
+  .reel-embed__alt a:hover{ border-bottom-color:var(--oxblood); }
+
+  /* contact form */
+  .cform{ margin-top:clamp(1.8rem,4vw,2.6rem); max-width:560px; display:flex; flex-direction:column; gap:1rem; }
+  .field{ display:flex; flex-direction:column; gap:.4rem; }
+  .field label{ font-family:var(--sans); font-weight:600; font-size:.72rem; text-transform:uppercase; letter-spacing:.13em; color:var(--ink-55); }
+  .field input, .field textarea{
+    font-family:var(--sans); font-size:1rem; color:var(--ink);
+    background:var(--paper); border:1px solid var(--line-2); border-radius:9px;
+    padding:.75rem .9rem; width:100%; transition:border-color .2s, box-shadow .2s;
+  }
+  .field input::placeholder, .field textarea::placeholder{ color:var(--ink-40); }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--oxblood); box-shadow:0 0 0 3px rgba(110,34,43,.12); }
+  .field textarea{ resize:vertical; min-height:130px; }
+  .btn{
+    align-self:flex-start; font-family:var(--sans); font-weight:700; font-size:.95rem; letter-spacing:.01em;
+    color:var(--paper); background:var(--oxblood); border:none; border-radius:999px;
+    padding:.8rem 1.85rem; cursor:pointer; transition:background .2s, transform .2s;
+  }
+  .btn:hover{ background:var(--oxblood-2); transform:translateY(-1px); }
+  .form__status{ font-family:var(--sans); font-size:.88rem; color:var(--ink-70); min-height:1.2em; }
+  .form__status--ok{ color:#2f6b3a; font-weight:700; }
+  .form__status--warn{ color:var(--oxblood); font-weight:700; }
+  .contact__alt{ margin:clamp(1.4rem,3vw,2rem) 0 0; font-size:.92rem; color:var(--ink-55); }
+  .contact__alt a{ color:var(--oxblood); border-bottom:1px solid var(--line-2); padding-bottom:1px; transition:border-color .2s; }
+  .contact__alt a:hover{ border-color:var(--oxblood); }
+
+  /* inline notify (halal cart launch list) */
+  .notify{
+    margin-top:1.1rem; padding:1.1rem 1.2rem;
+    background:rgba(110,34,43,.05); border:1px solid rgba(110,34,43,.22); border-radius:12px;
+  }
+  .notify__title{ font-family:var(--sans); font-weight:700; font-size:.95rem; color:var(--ink); margin:0 0 .15rem; }
+  .notify__sub{ font-size:.84rem; color:var(--ink-70); margin:0 0 .7rem; line-height:1.45; }
+  .notify__row{ display:flex; flex-wrap:wrap; gap:.5rem; }
+  .notify__row input{
+    flex:1 1 190px; min-width:0; font-family:var(--sans); font-size:.92rem; color:var(--ink);
+    background:var(--paper); border:1px solid var(--line-2); border-radius:999px; padding:.62rem 1rem;
+    transition:border-color .2s;
+  }
+  .notify__row input:focus{ outline:none; border-color:var(--oxblood); }
+  .notify__row button{
+    flex:0 0 auto; font-family:var(--sans); font-weight:700; font-size:.86rem;
+    color:var(--paper); background:var(--oxblood); border:none; border-radius:999px; padding:.62rem 1.3rem; cursor:pointer;
+    transition:background .2s;
+  }
+  .notify__row button:hover{ background:var(--oxblood-2); }
+  .notify .form__status{ margin:.55rem 0 0; font-size:.82rem; }
+
+  /* ---------- ROLE PAGES ---------- */
+  .role{ max-width:var(--maxw); margin:0 auto; padding:clamp(2.5rem,7vw,5.5rem) var(--pad) clamp(3rem,7vw,6rem); }
+  .eyebrow{
+    margin:0 0 1rem; font-family:var(--mono); font-size:.72rem;
+    text-transform:uppercase; letter-spacing:.26em; color:var(--oxblood);
+    display:flex; align-items:center; gap:.7rem;
+  }
+  .eyebrow::before{ content:""; width:1.8rem; height:1px; background:var(--oxblood); }
+  .role__title{
+    margin:0; font-family:var(--serif); font-weight:800; color:var(--ink);
+    font-size:clamp(3rem,8vw,6.5rem); line-height:.92; letter-spacing:-.04em;
+  }
+  .role__intro{
+    margin:1.6rem 0 0; max-width:46ch;
+    font-size:clamp(1.12rem,1rem + .55vw,1.4rem); line-height:1.55; color:var(--ink);
+  }
+  .role__intro em{ font-family:var(--serif); font-style:italic; color:var(--oxblood); }
+
+  /* credit rows */
+  .creds{ list-style:none; margin:clamp(2.4rem,5vw,3.6rem) 0 0; padding:0; }
+  .creds li{
+    display:grid; grid-template-columns:1fr; gap:.4rem;
+    padding:1.5rem 0; border-top:1px solid var(--line);
+  }
+  .creds li:last-child{ border-bottom:1px solid var(--line); }
+  .creds__role{ font-family:var(--serif); font-weight:600; font-size:1.22rem; letter-spacing:-.01em; color:var(--ink); }
+  .creds__desc{ color:var(--ink-70); max-width:62ch; }
+  @media(min-width:760px){
+    .creds li{ grid-template-columns:minmax(0,18.5rem) 1fr; gap:2rem; align-items:baseline; }
+  }
+
+  /* stat band */
+  .stats{
+    margin:clamp(2.6rem,6vw,4.2rem) 0 0;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden;
+  }
+  .stat{
+    background:var(--paper); padding:clamp(1.3rem,3vw,2rem) clamp(1rem,2.4vw,1.6rem);
+    display:flex; flex-direction:column; gap:.55rem;
+  }
+  .stat__num{
+    font-family:var(--serif); font-weight:700; color:var(--oxblood);
+    font-size:clamp(2.1rem,1.4rem + 2.6vw,3.6rem); line-height:1;
+    letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+  }
+  .stat__num--text{ font-size:clamp(1.4rem,1rem + 1.6vw,2.1rem); }
+  .stat__label{
+    font-family:var(--mono); font-size:.66rem; text-transform:uppercase;
+    letter-spacing:.14em; color:var(--ink-55); line-height:1.4;
+  }
+  .stat__tag{
+    margin:1.1rem 0 0; display:inline-block;
+    font-family:var(--mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.16em;
+    color:var(--tan-deep); border:1px solid var(--line-2); border-radius:999px;
+    padding:.45rem .9rem;
+  }
+  @media(max-width:560px){
+    .stats{ grid-template-columns:1fr; }
+    .hero__word--first{ margin-bottom:.1rem; }
+    .hero__word--last{ margin-top:.2rem; }
+    .portrait__frame{ width:clamp(168px,50vw,210px); }
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact__email{
+    display:inline-block; margin:clamp(1.6rem,4vw,2.4rem) 0 0;
+    font-family:var(--serif); font-weight:600; letter-spacing:-.02em; color:var(--oxblood);
+    font-size:clamp(1.8rem,1rem + 4vw,3.4rem); line-height:1.05;
+    position:relative; transition:color .25s ease;
+    word-break:break-word;
+  }
+  .contact__email::after{
+    content:""; position:absolute; left:0; right:0; bottom:.02em; height:2px;
+    background:var(--oxblood-2); transform:scaleX(0); transform-origin:left;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .contact__email:hover{ color:var(--oxblood-2); }
+  .contact__email:hover::after{ transform:scaleX(1); }
+
+  .contact__grid{
+    margin:clamp(2.4rem,5vw,3.6rem) 0 0; padding:0;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden;
+  }
+  .contact__grid > div{ background:var(--paper); padding:1.5rem clamp(1rem,2.4vw,1.6rem); margin:0; }
+  .contact__grid dt{
+    font-family:var(--mono); font-size:.66rem; text-transform:uppercase;
+    letter-spacing:.16em; color:var(--ink-55); margin-bottom:.5rem;
+  }
+  .contact__grid dd{ margin:0; font-size:1.05rem; color:var(--ink); }
+  .contact__grid dd a{ color:var(--oxblood); border-bottom:1px solid var(--line-2); padding-bottom:1px; transition:border-color .25s ease; }
+  .contact__grid dd a:hover{ border-color:var(--oxblood); }
+  @media(max-width:560px){ .contact__grid{ grid-template-columns:1fr; } }
+
+  /* ---------- footer ---------- */
+  .foot{
+    border-top:1px solid var(--line);
+    padding:1.6rem var(--pad);
+    display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; align-items:center; justify-content:space-between;
+    font-family:var(--mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.16em;
+    color:var(--ink-40);
+  }
+  .foot strong{ color:var(--oxblood); font-weight:500; }
+
+  /* keyboard focus */
+  a:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--oxblood); outline-offset:4px; border-radius:2px;
+  }
+  [data-focus]{ outline:none; }
+
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  @media(max-width:380px){
+    .topbar{ padding-left:1rem; padding-right:1rem; }
+    .nav{ gap:.6rem; }
+    .nav a{ font-size:.76rem; letter-spacing:.08em; }
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body class="on-home">
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" data-view="home">Jameel Shivji</a>
+    <div class="topbar__social">
+      <a href="https://www.instagram.com/jameelshivji/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.linkedin.com/in/jameel-shivji" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="7" y1="10.5" x2="7" y2="17"/><circle cx="7" cy="6.7" r=".6" fill="currentColor" stroke="none"/><line x1="11.2" y1="10.5" x2="11.2" y2="17"/><path d="M11.2 13.2c0-1.5 1.1-2.7 2.6-2.7s2.4 1.2 2.4 2.7V17"/></svg></a>
+    </div>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about"   data-view="about">About</a>
+      <a href="#work"    data-view="work">Work</a>
+      <a href="#contact" data-view="contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HOME ============ -->
+    <section class="view view--home is-active" id="home" aria-label="Home">
+      <div class="hero">
+        <h1 class="sr-only" tabindex="-1" data-focus>Jameel Shivji</h1>
+        <div class="hero__stack">
+          <span class="hero__word hero__word--first" aria-hidden="true">Jameel</span>
+          <figure class="portrait">
+            <div class="portrait__frame">
+              <div class="portrait__fallback" aria-hidden="true">JS</div>
+              <img class="portrait__img" src="assets/img/portrait.jpg" alt="Portrait of Jameel Shivji" onerror="this.style.display='none'" />
+            </div>
+          </figure>
+          <span class="hero__word hero__word--last" aria-hidden="true">Shivji</span>
+        </div>
+        <div class="hero__meta">
+          <p class="hero__tagline">Centering the underrepresented in media.</p>
+          <p class="hero__cred">SAG-AFTRA Actor · NYU Film &amp; TV BFA ’26 · Exited Founder</p>
+        </div>
+        <a class="scrolldown" href="#recently" aria-label="Scroll to recent work">
+          <span>Recent work</span>
+          <span class="scrolldown__chev">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </a>
+      </div>
+
+      <section class="recently" id="recently" aria-label="Recent work">
+        <div class="recently__head">
+          <span class="recently__eyebrow">Recently</span>
+          <h2 class="recently__title">What I’ve been up to</h2>
+        </div>
+        <div class="reel">
+
+          <article class="card card--feature">
+            <span class="card__tag">Pilot · Showrunner &amp; Creator</span>
+            <h3 class="card__title"><a class="inline-link" href="https://www.instagram.com/worldfamoushalalcart/" target="_blank" rel="noopener">Ali’s World Famous Halal Cart</a></h3>
+            <p class="card__blurb">A half-hour crime dramedy about a girl who stumbles into a black market after inheriting an NYC halal cart from her estranged father, and uses it to prove his innocence. Currently in post-production, heading for the 2027 festival circuit.</p>
+            <p class="card__facts">10K NYU Advanced TV grant · #1 on Seed&amp;Spark · ~90K Instagram views</p>
+            <a class="card__btn" href="#work" data-view="work" data-work="writing">Read more <span aria-hidden="true">→</span></a>
+            <div class="notify">
+              <p class="notify__title">Get early access</p>
+              <p class="notify__sub">Be first to know when you can watch it.</p>
+              <form data-form action="https://formspree.io/f/xaqgpnnp" method="POST">
+                <input type="hidden" name="_subject" value="Halal Cart early-access signup">
+                <input type="hidden" name="list" value="Halal Cart launch">
+                <div class="notify__row">
+                  <input type="text" name="contact" placeholder="Email or phone number" required>
+                  <button type="submit">Notify me</button>
+                </div>
+                <p class="form__status" aria-live="polite"></p>
+              </form>
+            </div>
+          </article>
+
+          <article class="card">
+            <span class="card__tag">Digital Marketing Lead</span>
+            <h3 class="card__title">Upcoming Feature Film</h3>
+            <p class="card__blurb">Leading digital marketing strategy for an upcoming feature film.</p>
+            <a class="card__btn" href="#work" data-view="work" data-work="founder">Read more <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card">
+            <span class="card__tag">Development · Intern</span>
+            <h3 class="card__title"><a class="inline-link" href="https://buffalo8.com/" target="_blank" rel="noopener">Buffalo 8</a></h3>
+            <p class="card__blurb">Spent the summer writing script coverage and drafting pitch decks. Pitched an original TV series to <a class="inline-link" href="https://www.linkedin.com/in/matthew-helderman-35155058/" target="_blank" rel="noopener">Matthew Helderman</a> and <a class="inline-link" href="https://www.linkedin.com/in/luketaylor1/" target="_blank" rel="noopener">Luke Taylor</a>.</p>
+            <a class="card__btn" href="#work" data-view="work" data-work="writing">Read more <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card">
+            <span class="card__tag">Script Coverage · Intern</span>
+            <h3 class="card__title"><a class="inline-link" href="https://www.filmfinancefund.net/" target="_blank" rel="noopener">Film Finance Fund</a></h3>
+            <p class="card__blurb">Read and delivered industry-standard coverage on feature screenplays under financial consideration for founder <b><a class="inline-link" href="https://www.filmfinancefund.net/" target="_blank" rel="noopener">Thiago Torres</a></b>, weighing story, craft, and commercial potential to guide investment decisions.</p>
+            <a class="card__btn" href="#work" data-view="work" data-work="writing">Read more <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card">
+            <span class="card__tag">Fellow · NYU London</span>
+            <h3 class="card__title"><a class="inline-link" href="https://www.nyu.edu/academics/studying-abroad/student-experiences/student-life/global-equity-fellows-advance-the-topics-of-diversity--equity--a.html" target="_blank" rel="noopener">Global Equity Fellowship</a></h3>
+            <p class="card__blurb">Trained in strategies to promote inclusion, diversity, belonging, equity &amp; accessibility (<b>IDBEA</b>), and organized panels, workshops &amp; events on a £3,000 budget while studying in London.</p>
+            <p class="card__facts">£3,000 event budget · London, England</p>
+            <a class="card__btn" href="#about" data-view="about">Read more <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card">
+            <span class="card__tag">Web Series · Director &amp; Story Editor</span>
+            <h3 class="card__title"><a class="inline-link" href="https://www.instagram.com/ruzindawebseries/" target="_blank" rel="noopener">RU Zinda</a></h3>
+            <p class="card__blurb">Wrote and directed two episodes of a dramedy web series following a collegiate Bollywood dance team’s journey to success. Story-edited season one.</p>
+            <p class="card__facts">$9K budget · 70-person production day · 2 episodes directed</p>
+            <a class="card__btn" href="#work" data-view="work" data-work="writing">Read more <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card">
+            <span class="card__tag">Founder · Acquired by Snap</span>
+            <h3 class="card__title"><a class="inline-link" href="https://hagsapp.com/" target="_blank" rel="noopener">HAGS</a></h3>
+            <p class="card__blurb">Co-founder of a Gen-Z social app backed by <a class="inline-link" href="https://www.gv.com/" target="_blank" rel="noopener">GV</a> and <a class="inline-link" href="https://boxgroup.com/" target="_blank" rel="noopener">BoxGroup</a>. Acquired by <a class="inline-link" href="https://www.snap.com/" target="_blank" rel="noopener">Snap Inc.</a></p>
+            <p class="card__facts">$1.25M seed · 46K downloads in 6 weeks · #34 Apple social</p>
+            <a class="card__btn" href="#work" data-view="work" data-work="founder">Read more <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card">
+            <span class="card__tag">Lead · Famico Studios</span>
+            <h3 class="card__title">Untitled MOCAP Video Game</h3>
+            <p class="card__blurb">Portrayed Shifter, a shape-shifting hero, in an RPG motion-capture video game about fighting spirits in the Middle East.</p>
+            <a class="card__btn" href="#work" data-view="work" data-work="acting">Read more <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card">
+            <span class="card__tag">Co-Star · Peacock</span>
+            <h3 class="card__title"><a class="inline-link" href="https://www.imdb.com/title/tt10662034/" target="_blank" rel="noopener">Mr. Mayor</a></h3>
+            <p class="card__blurb">Portrayed Baz, an arrogant punk, on an episode of <a class="inline-link" href="https://www.peacocktv.com/" target="_blank" rel="noopener">Tina Fey’s sitcom</a>, starring Ted Danson.</p>
+            <a class="card__btn" href="#work" data-view="work" data-work="acting">Read more <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card card--cta">
+            <h3 class="card__title">See everything</h3>
+            <p class="card__blurb">Acting credits, writing samples, and the founder story all live on the Work page.</p>
+            <a class="btn" href="#work" data-view="work">Explore my work <span aria-hidden="true">→</span></a>
+          </article>
+
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="view" id="about" aria-label="About">
+      <div class="role">
+        <div class="about-layout">
+          <div class="about-text">
+            <p class="eyebrow">About</p>
+            <h2 class="role__title" tabindex="-1" data-focus>About</h2>
+            <p class="about__lead">I’m a South Asian Ismaili Muslim screenwriter, actor, and entrepreneur with a passion for marketing, technology, and dark comedy.</p>
+            <p class="role__intro" style="max-width:64ch">Translation: I’m superrr Californian. At least in the cultural melting-pot sense.</p>
+            <p class="role__intro" style="max-width:64ch">Dad from East Africa, mom once a refugee in Italy, and both sisters Canadian-born. <em>It’s in my DNA to embrace anything and everything <b>new</b>.</em> That can look like many things, whether it's...</p>
+            <ul class="about__list">
+              <li>My middle school self (obese, glasses, mushroom haircut), forcing my parents to drive 6 hours to Los Angeles for weekly auditions.</li>
+              <li>Pitching Google Ventures and David Tisch for $1.25M as an eighteen-year-old with no prior experience in tech.</li>
+              <li>Buying an 8-foot-tall halal cart and throwing my back out lugging it around NYC.</li>
+            </ul>
+            <p class="role__intro" style="max-width:64ch">Taking these risks and more fuel my screenwriting. I’m drawn to age-old cultural rifts, generational divides, and adults who age into children (perks of having a big tight-knit family).</p>
+            <p class="role__intro" style="max-width:64ch">Oh &amp; since we’re still here, I also love boxing, Japanese menswear, indie music, advocating for equal rights, traveling, <span class="plus-fun">+</span> I make a mean British trifle.</p>
+            <p class="role__intro" style="max-width:64ch">Wanna chat? <a class="inline-link" href="#contact" data-view="contact">Hit me up!</a></p>
+            <div class="metabar" style="margin-top:clamp(1.8rem,4vw,2.6rem)">
+              <span class="metabar__item"><a class="inline-link" href="https://tisch.nyu.edu/film-tv" target="_blank" rel="noopener">NYU Tisch Film &amp; TV</a> <b>BFA ’26</b></span>
+              <span class="metabar__item">Minor in <a class="inline-link" href="https://www.stern.nyu.edu/experience-stern/about/departments-centers-initiatives/interdisciplinary-initiatives/entertainment-media-and-technology-program/academic-programs/undergraduate/bemt-minor" target="_blank" rel="noopener">NYU Stern Business (BEMT)</a></span>
+              <span class="metabar__item">Dual <b>U.S. &amp; Canadian</b> citizen</span>
+              <span class="metabar__item">Based in <b>Los Angeles &amp; New York</b></span>
+            </div>
+          </div>
+          <div class="about-collage" aria-label="Photos of Jameel">
+            <div class="about-collage__tile"><img src="assets/img/about/on-set-monitor.jpg" alt="Directing from the monitor on set" loading="lazy"></div>
+            <div class="about-collage__tile"><img src="assets/img/about/nyu-graduation.jpg" alt="Graduating NYU Tisch outside Radio City Music Hall" loading="lazy"></div>
+            <div class="about-collage__tile"><img src="assets/img/about/hags-hoodie.jpg" alt="Wearing HAGS merch" loading="lazy" style="object-position:bottom"></div>
+            <div class="about-collage__tile"><img src="assets/img/about/missing-premiere.jpg" alt="At the Missing premiere" loading="lazy" style="object-position:top"></div>
+            <div class="about-collage__tile"><img src="assets/img/about/paris-eiffel.jpg" alt="In Paris, at the Eiffel Tower" loading="lazy"></div>
+            <div class="about-collage__tile"><img src="assets/img/about/amalfi-boat.jpg" alt="On a boat on the Amalfi Coast" loading="lazy"></div>
+            <div class="about-collage__tile"><img src="assets/img/about/coachella.jpg" alt="At Coachella" loading="lazy"></div>
+            <div class="about-collage__tile"><img src="assets/img/about/egypt-pyramids.jpg" alt="At the pyramids of Giza, Egypt" loading="lazy"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="view" id="work" aria-label="Work">
+      <div class="role">
+        <p class="eyebrow">Selected work</p>
+        <h2 class="role__title" tabindex="-1" data-focus>Work</h2>
+
+        <div class="worktabs" role="tablist" aria-label="Work categories">
+          <button class="worktab is-active" type="button" data-work="acting" role="tab" aria-selected="true">Acting</button>
+          <button class="worktab" type="button" data-work="writing" role="tab" aria-selected="false">Writing</button>
+          <button class="worktab" type="button" data-work="founder" role="tab" aria-selected="false">Founder</button>
+        </div>
+
+        <!-- ACTING -->
+        <div class="workpanel is-active" id="work-acting" role="tabpanel">
+          <p class="role__intro" style="margin-top:clamp(1.6rem,3vw,2.2rem)">A decade on screen across film, network television, and streaming. Watch me make you laugh, cry, or scream and explore my work below:</p>
+
+          <div class="metabar">
+            <span class="metabar__item"><b><a class="inline-link" href="https://www.sagaftra.org/" target="_blank" rel="noopener">SAG-AFTRA</a></b></span>
+            <a class="rep__link" style="margin-top:0" href="http://www.imdb.me/jameelshivji" target="_blank" rel="noopener">IMDb ↗</a>
+          </div>
+
+          <p class="subhead">Representation</p>
+          <div class="repbar">
+            <div class="rep"><span class="rep__label">Management</span><span class="rep__name"><a class="inline-link" href="https://www.entlab.la/" target="_blank" rel="noopener">Entertainment Lab</a></span><span class="rep__person">Matt Ilczuk</span></div>
+            <div class="rep"><span class="rep__label">Theatrical Agency</span><span class="rep__name"><a class="inline-link" href="https://aefhtalent.com/" target="_blank" rel="noopener">AEFH</a></span><span class="rep__person">Amsel, Eisenstadt, Frazier &amp; Hinojosa</span></div>
+            <div class="rep"><span class="rep__label">Voiceover Agency</span><span class="rep__name"><a class="inline-link" href="https://voxusa.net/" target="_blank" rel="noopener">Vox, Inc.</a></span><span class="rep__person">Animation &amp; Interactive</span></div>
+          </div>
+
+          <p class="subhead">Reel</p>
+          <div class="reel-embed" id="reelEmbed" data-yt="ceeHx-g2-kk">
+            <button class="reel-embed__btn" type="button" aria-label="Play acting reel">
+              <img class="reel-embed__thumb" src="https://img.youtube.com/vi/ceeHx-g2-kk/hqdefault.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+              <span class="reel-embed__play" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+            </button>
+          </div>
+          <p class="reel-embed__alt"><a href="https://www.youtube.com/watch?v=ceeHx-g2-kk" target="_blank" rel="noopener">Watch the reel on YouTube ↗</a></p>
+
+          <p class="subhead">Film</p>
+          <div class="creditgrid">
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.sonypictures.com/" target="_blank" rel="noopener">Sony</a></span><h3 class="credit__title">Missing</h3><p class="credit__role">as <b>Karthik</b></p><span class="rtype">Supporting</span></article>
+            <article class="credit"><span class="credit__net">Dir. John D’Aquino</span><h3 class="credit__title">Another Assembly</h3><p class="credit__role">as <b>Neil</b></p><span class="rtype">Supporting</span></article>
+            <article class="credit"><span class="credit__net">Dir. Trisha Simmons</span><h3 class="credit__title">Everything’s Got A Story</h3><p class="credit__role">as <b>Self</b></p><span class="rtype">Supporting</span></article>
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.usc.edu/" target="_blank" rel="noopener">USC</a></span><h3 class="credit__title">Redrum</h3><p class="credit__role">as <b>Edward</b></p><span class="rtype rtype--top">Lead</span></article>
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.usc.edu/" target="_blank" rel="noopener">USC</a></span><h3 class="credit__title">Dear Past Self</h3><p class="credit__role">as <b>Sam</b></p><span class="rtype rtype--top">Lead</span></article>
+          </div>
+
+          <p class="subhead">Television</p>
+          <div class="creditgrid">
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.netflix.com/" target="_blank" rel="noopener">Netflix</a></span><h3 class="credit__title">Family Reunion</h3><p class="credit__role">as <b>Scott Hartle</b></p><span class="rtype">Co-Star</span></article>
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.nbc.com/" target="_blank" rel="noopener">NBC</a></span><h3 class="credit__title">Mr. Mayor</h3><p class="credit__role">as <b>Baz</b></p><span class="rtype">Co-Star</span></article>
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.apple.com/apple-tv-plus/" target="_blank" rel="noopener">Apple TV+</a></span><h3 class="credit__title">Roar</h3><p class="credit__role">as <b>Man on the Beach</b></p><span class="rtype">Co-Star</span></article>
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.hbo.com/" target="_blank" rel="noopener">HBO</a></span><h3 class="credit__title">Insecure</h3><p class="credit__role">as <b>Stanford Volunteer #1</b></p><span class="rtype">Co-Star</span></article>
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.fxnetworks.com/" target="_blank" rel="noopener">FX</a></span><h3 class="credit__title">Better Things</h3><p class="credit__role">as <b>Gabe</b></p><span class="rtype">Co-Star</span></article>
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.tbs.com/" target="_blank" rel="noopener">TBS</a></span><h3 class="credit__title">The Detour</h3><p class="credit__role">as <b>Mason</b></p><span class="rtype rtype--top">Recurring Guest</span></article>
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://abc.com/" target="_blank" rel="noopener">ABC</a></span><h3 class="credit__title">Jimmy Kimmel Live!</h3><p class="credit__role">as <b>Siddharth</b></p><span class="rtype rtype--mid">Guest Star</span></article>
+            <article class="credit"><span class="credit__net"><a class="inline-link" href="https://www.nickelodeon.com/" target="_blank" rel="noopener">Nickelodeon</a></span><h3 class="credit__title">100 Things To Do…</h3><p class="credit__role">as <b>Stanley</b></p><span class="rtype rtype--top">Recurring</span></article>
+            <article class="credit"><span class="credit__net">YouTube</span><h3 class="credit__title">Funniest Kids in Town</h3><p class="credit__role">as <b>Monti / Ben</b></p><span class="rtype rtype--top">Recurring</span></article>
+          </div>
+
+          <p class="subhead">Voiceover &amp; Theater</p>
+          <div class="creditgrid">
+            <article class="credit"><span class="credit__net">Famico · Video Game</span><h3 class="credit__title">‘Cottonwood’ (MOCAP)</h3><p class="credit__role">as <b>Shifter</b></p><span class="rtype rtype--top">Lead</span></article>
+            <article class="credit"><span class="credit__net">Dir. John D’Aquino</span><h3 class="credit__title">Anne Frank</h3><p class="credit__role">Stage</p><span class="rtype rtype--top">Lead</span></article>
+            <article class="credit"><span class="credit__net">IPOP LA</span><h3 class="credit__title">Infectious</h3><p class="credit__role">Stage</p><span class="rtype rtype--top">Lead</span></article>
+            <article class="credit"><span class="credit__net">IPOP LA</span><h3 class="credit__title">Carey: The Musical</h3><p class="credit__role">Stage</p><span class="rtype">Supporting</span></article>
+            <article class="credit"><span class="credit__net">Stage</span><h3 class="credit__title">Grease</h3><p class="credit__role">Musical</p><span class="rtype">Supporting</span></article>
+            <article class="credit"><span class="credit__net">Stage</span><h3 class="credit__title">Clowns</h3><p class="credit__role">Play</p><span class="rtype">Supporting</span></article>
+          </div>
+
+          <p class="subhead">Training &amp; Special Skills</p>
+          <p class="role__intro" style="max-width:60ch; font-size:1rem; margin-top:1.1rem">Trained at <b><a class="inline-link" href="https://ucbcomedy.com/" target="_blank" rel="noopener">Upright Citizens Brigade</a></b> (improv) and <b>Berg Studios</b> with Gregory Berg, plus on-camera coaching with Lisa Picotte and Trisha Simmons. Dialects in <b>Indian, British &amp; Southern</b> accents; trained in <b>hip-hop &amp; ballet</b>, singing &amp; rapping, motion capture, and cry-on-cue. Athletic in soccer, basketball, tennis, swimming, biking, fencing, boxing, and Cross-Fit.</p>
+        </div>
+
+        <!-- WRITING -->
+        <div class="workpanel" id="work-writing" role="tabpanel">
+          <p class="role__intro" style="margin-top:clamp(1.6rem,3vw,2.2rem)">I write drama that’s funny and comedy that’s sad. You might uncomfortably laugh, but just trust the process; I got you! Generally inclined towards BIPOC and LGBTQ+ stories. Explore my work below:</p>
+
+          <p class="subhead">Samples</p>
+          <p class="note">Tap any title to open my full writing portfolio.</p>
+          <div class="chips" style="margin-top:1.1rem">
+            <a class="chip" href="https://drive.google.com/drive/folders/1P4SC0uwUhJOZGEZrA1zWq6W6qluKyR0a?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M7 3h8l5 5v13H7z"/></svg> Ali’s World Famous Halal Cart · Pilot ↗</a>
+            <a class="chip" href="https://drive.google.com/drive/folders/1P4SC0uwUhJOZGEZrA1zWq6W6qluKyR0a?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M7 3h8l5 5v13H7z"/></svg> COPE · Pilot ↗</a>
+            <a class="chip" href="https://drive.google.com/drive/folders/1P4SC0uwUhJOZGEZrA1zWq6W6qluKyR0a?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M7 3h8l5 5v13H7z"/></svg> P.J. (Toluca Hills) · Pilot ↗</a>
+            <a class="chip" href="https://drive.google.com/drive/folders/1P4SC0uwUhJOZGEZrA1zWq6W6qluKyR0a?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M7 3h8l5 5v13H7z"/></svg> I’m Talented, Okay? · Web Series ↗</a>
+            <a class="chip" href="https://drive.google.com/drive/folders/1P4SC0uwUhJOZGEZrA1zWq6W6qluKyR0a?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M7 3h8l5 5v13H7z"/></svg> Ninety Days · Feature ↗</a>
+            <a class="chip" href="https://drive.google.com/drive/folders/1P4SC0uwUhJOZGEZrA1zWq6W6qluKyR0a?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M7 3h8l5 5v13H7z"/></svg> RU Zinda · Ep. 2 ↗</a>
+          </div>
+
+          <p class="subhead">Internships &amp; Programs</p>
+          <div class="creditgrid">
+            <article class="credit"><span class="credit__net">Development Intern</span><h3 class="credit__title"><a class="inline-link" href="https://buffalo8.com/" target="_blank" rel="noopener">Buffalo 8</a></h3><p class="credit__role">Wrote script coverage and drafted pitch decks. Pitched an original series to <a class="inline-link" href="https://www.linkedin.com/in/matthew-helderman-35155058/" target="_blank" rel="noopener">Matthew Helderman</a> and <a class="inline-link" href="https://www.linkedin.com/in/luketaylor1/" target="_blank" rel="noopener">Luke Taylor</a>.</p><span class="rtype rtype--top">Development</span></article>
+            <article class="credit"><span class="credit__net">Script Coverage Intern</span><h3 class="credit__title"><a class="inline-link" href="https://www.filmfinancefund.net/" target="_blank" rel="noopener">Film Finance Fund</a></h3><p class="credit__role">Assessed feature scripts for financing and packaging potential, for founder <b><a class="inline-link" href="https://www.filmfinancefund.net/" target="_blank" rel="noopener">Thiago Torres</a></b>.</p><span class="rtype rtype--mid">Coverage</span></article>
+            <article class="credit"><span class="credit__net">NYU London</span><h3 class="credit__title">Yolanda Mercy TV Writing Program</h3><p class="credit__role">Studied television writing in London through <a class="inline-link" href="https://www.nyu.edu/" target="_blank" rel="noopener">NYU</a>’s study-abroad program, working with <b>Yolanda Mercy</b>.</p><span class="rtype rtype--top">Writing</span></article>
+            <article class="credit"><span class="credit__net">Script Coverage Intern</span><h3 class="credit__title"><a class="inline-link" href="https://original-artists.com/" target="_blank" rel="noopener">Original Artists Agency</a></h3><p class="credit__role">Read and evaluated incoming submissions, writing coverage for the literary team.</p><span class="rtype rtype--mid">Coverage</span></article>
+            <article class="credit"><span class="credit__net">Summer Program</span><h3 class="credit__title">USC Summer Program</h3><p class="credit__role">Studied dramatic feature writing under <b>Peter Gamble</b> and sitcom writing under <b>Jim Staahl</b>.</p><span class="rtype rtype--top">Writing</span></article>
+          </div>
+
+          <p class="subhead">Selected work</p>
+
+          <article class="proj proj--feature">
+            <div class="proj__media proj__media--img"><img src="assets/img/posters/halal-cart-poster.jpg" alt="Ali’s World Famous Halal Cart poster" loading="lazy"></div>
+            <div class="proj__body">
+              <span class="proj__tag">Pilot · Showrunner &amp; Creator</span>
+              <h3 class="proj__title"><a class="inline-link" href="https://www.instagram.com/worldfamoushalalcart/" target="_blank" rel="noopener">Ali’s World Famous Halal Cart</a></h3>
+              <p class="proj__role">Created, wrote &amp; ran · NYU Advanced TV</p>
+              <p class="proj__desc">A half-hour crime dramedy about a girl who stumbles into a black market after inheriting an NYC halal cart from her estranged father, and uses it to prove his innocence. <b>Selected as one of two pilots</b> for NYU’s Advanced TV program, its highest-funded undergraduate production. Now in post-production, heading for the <b>2027 festival circuit</b>.</p>
+              <div class="projstats">
+                <div class="projstat"><b>10K</b><span>NYU Advanced TV grant</span></div>
+                <div class="projstat"><b>#1</b><span>Seed&amp;Spark anticipated</span></div>
+                <div class="projstat"><b>~90K</b><span>Instagram views</span></div>
+                <div class="projstat"><b>30–40</b><span>Person crew</span></div>
+              </div>
+              <div class="chips"><a class="chip" href="https://drive.google.com/drive/folders/1P4SC0uwUhJOZGEZrA1zWq6W6qluKyR0a?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M7 3h8l5 5v13H7z"/></svg> Read the script ↗</a></div>
+              <div class="notify">
+                <p class="notify__title">Get early access</p>
+                <p class="notify__sub">Drop your email or phone number and I’ll let you know the moment you can watch it.</p>
+                <form data-form action="https://formspree.io/f/xaqgpnnp" method="POST">
+                  <input type="hidden" name="_subject" value="Halal Cart early-access signup">
+                  <input type="hidden" name="list" value="Halal Cart launch">
+                  <div class="notify__row">
+                    <input type="text" name="contact" placeholder="Email or phone number" required>
+                    <button type="submit">Notify me</button>
+                  </div>
+                  <p class="form__status" aria-live="polite"></p>
+                </form>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="proj__media proj__media--img"><img src="assets/img/posters/ru-zinda-poster.jpg" alt="RU Zinda poster" loading="lazy"></div>
+            <div class="proj__body">
+              <span class="proj__tag">Web Series · Staff Writer, Director &amp; Story Editor</span>
+              <h3 class="proj__title"><a class="inline-link" href="https://www.instagram.com/ruzindawebseries/" target="_blank" rel="noopener">RU Zinda</a></h3>
+              <p class="proj__role">Staff writer &amp; story editor · 2 episodes directed</p>
+              <p class="proj__desc">A college student has to build a Bollywood dance team to keep her athletic scholarship. I wrote and directed two episodes, one a <b>70-person production</b> and another a fully choreographed dance sequence, then was promoted to <b>story editor</b> to map the first-season room.</p>
+              <div class="projstats">
+                <div class="projstat"><b>$9K</b><span>Production budget</span></div>
+                <div class="projstat"><b>70</b><span>Person production day</span></div>
+                <div class="projstat"><b>2</b><span>Episodes directed</span></div>
+              </div>
+              <div class="chips"><a class="chip" href="https://drive.google.com/drive/folders/1P4SC0uwUhJOZGEZrA1zWq6W6qluKyR0a?usp=sharing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M7 3h8l5 5v13H7z"/></svg> Read the script ↗</a></div>
+            </div>
+          </article>
+
+          <p class="subhead" style="margin-top:clamp(2.4rem,5vw,3.4rem)">Behind the Scenes</p>
+          <div class="creditgrid">
+            <article class="credit"><span class="credit__net">Digital Marketing Lead</span><h3 class="credit__title">Upcoming Feature Film</h3><p class="credit__role">Leading digital marketing strategy for an upcoming feature film.</p><span class="rtype rtype--top">Marketing</span></article>
+          </div>
+        </div>
+
+        <!-- FOUNDER -->
+        <div class="workpanel" id="work-founder" role="tabpanel">
+          <p class="role__intro" style="margin-top:clamp(1.6rem,3vw,2.2rem)">I build social products for Gen-Z. <em>Branding, marketing, and product</em> are my lane. Check it out:</p>
+
+          <article class="proj proj--feature">
+            <div class="proj__media proj__media--img"><img src="assets/img/logos/hags-logo.png" alt="HAGS logo" loading="lazy" style="object-fit:contain; background:#FFD0AC; padding:3.5rem"></div>
+            <div class="proj__body">
+              <span class="proj__tag">Co-Founder &amp; Chief Creative Officer · 2020–22</span>
+              <h3 class="proj__title"><a class="inline-link" href="https://hagsapp.com/" target="_blank" rel="noopener">HAGS</a></h3>
+              <p class="proj__role">Acquired by Snap Inc. · 2022</p>
+              <p class="proj__desc">The yearbook you sign through Snapchat. I co-founded <a class="inline-link" href="https://hagsapp.com/" target="_blank" rel="noopener">HAGS</a> with my sister Suraya and James Dale during the 2020 lockdown: a viral digital yearbook that grew into a <b>Club-Penguin-style virtual campus</b>. I owned <b>brand, product &amp; go-to-market</b>, recruited <b>200+ campus ambassadors</b>, and we became the <b>first third-party app to ship full-body Bitmoji</b> through a formal <a class="inline-link" href="https://www.snap.com/" target="_blank" rel="noopener">Snap</a> partnership, before Snap acquired us. Backed by <b><a class="inline-link" href="https://www.gv.com/" target="_blank" rel="noopener">Google Ventures</a></b> and <b><a class="inline-link" href="https://boxgroup.com/" target="_blank" rel="noopener">BoxGroup</a></b>.</p>
+              <div class="projstats">
+                <div class="projstat"><b>$1.25M</b><span>Seed raised</span></div>
+                <div class="projstat"><b>46K</b><span>Downloads, 6 weeks</span></div>
+                <div class="projstat"><b>#34</b><span>Apple Social chart</span></div>
+                <div class="projstat"><b>200+</b><span>Campus ambassadors</span></div>
+              </div>
+              <div class="chips">
+                <a class="chip" href="https://techcrunch.com/2020/09/28/gv-bets-on-young-team-behind-high-school-social-app-hags/" target="_blank" rel="noopener">TechCrunch ↗</a>
+                <a class="chip" href="https://www.dazeddigital.com/science-tech/article/49552/1/app-high-school-students-sign-virtual-yearbooks-via-snapchat-coronavirus-hags" target="_blank" rel="noopener">Dazed ↗</a>
+                <a class="chip" href="https://onezero.medium.com/these-siblings-developed-an-app-to-let-people-sign-yearbooks-in-quarantine-b440b89124fc" target="_blank" rel="noopener">Medium ↗</a>
+                <a class="chip" href="https://www.crunchbase.com/organization/hags" target="_blank" rel="noopener">Crunchbase ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="proj__media proj__media--img"><img src="assets/img/logos/cast-aside-logo.jpg" alt="Cast Aside podcast cover art" loading="lazy" style="object-fit:contain; background:var(--paper); padding:3.5rem"></div>
+            <div class="proj__body">
+              <span class="proj__tag">Podcast · CEO &amp; Founder · 2018</span>
+              <h3 class="proj__title">Cast Aside</h3>
+              <p class="proj__role">Created &amp; hosted · Spotify, Apple, iTunes</p>
+              <p class="proj__desc">A podcast I founded to take on diversity, misrepresentation, and gender inequality in the entertainment industry. I hosted conversations with guests including actor <b>Rizwan Manji</b>, screenwriter and actress <b>Madison De La Garza</b>, and <b><a class="inline-link" href="https://www.sagaftra.org/" target="_blank" rel="noopener">SAG-AFTRA</a> Diversity Director Ellen Huang</b>. Through sponsorships, we donated <b>100% of proceeds</b> to charities tackling the issues we discussed.</p>
+              <div class="projstats">
+                <div class="projstat"><b>1,500+</b><span>Downloads</span></div>
+                <div class="projstat"><b>29</b><span>Countries</span></div>
+                <div class="projstat"><b>200%</b><span>Reach growth, 3 mo</span></div>
+              </div>
+              <div class="chips">
+                <a class="chip" href="https://open.spotify.com/show/4qXCefkRqFcaiCzapFWKCv" target="_blank" rel="noopener">Listen on Spotify ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <p class="subhead">Cast Aside · Episodes</p>
+          <div class="episodes">
+
+            <article class="episode">
+              <div class="episode__player">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/6STphsmM9Rs2rvL5uRDVhL?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              </div>
+              <div class="episode__info">
+                <h4 class="episode__title">Rizwan Manji</h4>
+                <p class="episode__meta">Apr 2019 · 33 min</p>
+                <p class="episode__desc">The Canadian American actor known for The Magicians, Mr. Robot, and Ray on Schitt’s Creek, on typecasting, theater, and the TV series he co-created.</p>
+              </div>
+            </article>
+
+            <article class="episode">
+              <div class="episode__player">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/5b1lRUk1TqNKBSsRBleazM?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              </div>
+              <div class="episode__info">
+                <h4 class="episode__title">Jordan Nguyen</h4>
+                <p class="episode__meta">Mar 2019 · 20 min</p>
+                <p class="episode__desc">Dancer and actress from NBC’s World of Dance, on competing with the group Girl Cool, how Crazy Rich Asians shaped her career, and her honest take on Dance Moms.</p>
+              </div>
+            </article>
+
+            <article class="episode">
+              <div class="episode__player">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/6ARJMBM6sYGj98xjTGdovO?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              </div>
+              <div class="episode__info">
+                <h4 class="episode__title">Madison De La Garza</h4>
+                <p class="episode__meta">Mar 2019 · 43 min</p>
+                <p class="episode__desc">Screenwriter and actress, Juanita Solis on Desperate Housewives, on 13 Reasons Why, social media, and growing up in the spotlight with her sisters Dallas and Demi Lovato.</p>
+              </div>
+            </article>
+
+            <article class="episode">
+              <div class="episode__player">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/2qk7wOMydvpuQNlMm5I4Xu?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+              </div>
+              <div class="episode__info">
+                <h4 class="episode__title">Roxy Cowan</h4>
+                <p class="episode__meta">Feb 2019 · 23 min</p>
+                <p class="episode__desc">A seventeen-year-old filmmaker who wrote, directed, produced, and edited a feature while still in high school, on gender equality and life as a young woman on set.</p>
+              </div>
+            </article>
+
+          </div>
+
+          <p class="subhead" style="margin-top:clamp(2.4rem,5vw,3.4rem)">Behind the Scenes</p>
+          <div class="creditgrid">
+            <article class="credit"><span class="credit__net">Digital Marketing Lead</span><h3 class="credit__title">Upcoming Feature Film</h3><p class="credit__role">Leading digital marketing strategy for an upcoming feature film.</p><span class="rtype rtype--top">Marketing</span></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="view" id="contact" aria-label="Contact">
+      <div class="role">
+        <p class="eyebrow">Say hello</p>
+        <h2 class="role__title" tabindex="-1" data-focus>Get in touch</h2>
+        <p class="role__intro">Fill out the form and it lands straight in my inbox!</p>
+
+        <form class="cform" data-form action="https://formspree.io/f/xaqgpnnp" method="POST">
+          <input type="hidden" name="_subject" value="New message from jameelshivji.com">
+          <div class="field">
+            <label for="cf-name">Full name</label>
+            <input id="cf-name" type="text" name="name" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="cf-msg">Message</label>
+            <textarea id="cf-msg" name="message" placeholder="What’s on your mind?" required></textarea>
+          </div>
+          <button class="btn" type="submit">Send message</button>
+          <p class="form__status" aria-live="polite"></p>
+        </form>
+
+        <p class="contact__alt">Prefer social? <a href="https://www.instagram.com/jameelshivji/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.linkedin.com/in/jameel-shivji" target="_blank" rel="noopener">LinkedIn</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span><strong>Jameel Shivji</strong></span>
+    <span>Actor · Writer · Founder</span>
+    <span>© 2026</span>
+  </footer>
+
+  <script>
+    (function(){
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var views = {};
+      document.querySelectorAll('.view').forEach(function(v){ views[v.id] = v; });
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll('[data-view]'));
+      var navItems = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+      var workTabs = Array.prototype.slice.call(document.querySelectorAll('.worktab'));
+      var workPanels = Array.prototype.slice.call(document.querySelectorAll('.workpanel'));
+      var body = document.body;
+
+      function showWork(cat){
+        var match = 'work-' + cat;
+        if(!workPanels.some(function(p){ return p.id === match; })) return;
+        workTabs.forEach(function(t){
+          var on = t.dataset.work === cat;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        workPanels.forEach(function(p){ p.classList.toggle('is-active', p.id === match); });
+      }
+      workTabs.forEach(function(t){
+        t.addEventListener('click', function(){ showWork(t.dataset.work); });
+      });
+
+      function animateStat(el){
+        var target = parseFloat(el.dataset.target);
+        var dec = parseInt(el.dataset.decimals || '0', 10);
+        var pre = el.dataset.prefix || '';
+        var suf = el.dataset.suffix || '';
+        var fmt = function(n){ return pre + n.toFixed(dec) + suf; };
+        if(reduce){ el.textContent = fmt(target); return; }
+        var dur = 1100, start = null;
+        function frame(ts){
+          if(start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          p = 1 - Math.pow(1 - p, 3); // easeOutCubic
+          el.textContent = fmt(target * p);
+          if(p < 1){ requestAnimationFrame(frame); }
+          else { el.textContent = fmt(target); }
+        }
+        el.textContent = fmt(0);
+        requestAnimationFrame(frame);
+      }
+
+      function show(id){
+        if(!views[id]) id = 'home';
+        Object.keys(views).forEach(function(k){ views[k].classList.remove('is-active'); });
+        var v = views[id];
+        v.classList.add('is-active');
+
+        navItems.forEach(function(l){
+          var on = l.dataset.view === id;
+          l.classList.toggle('is-current', on);
+          if(on){ l.setAttribute('aria-current', 'page'); } else { l.removeAttribute('aria-current'); }
+        });
+
+        body.classList.toggle('on-home', id === 'home');
+
+        v.querySelectorAll('.stat__num[data-target]').forEach(animateStat);
+
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        var focusEl = v.querySelector('[data-focus]');
+        if(focusEl){ focusEl.focus({ preventScroll: true }); }
+      }
+
+      navLinks.forEach(function(l){
+        l.addEventListener('click', function(e){
+          e.preventDefault();
+          var id = l.dataset.view;
+          if(('#' + id) !== location.hash){ history.pushState({ id: id }, '', '#' + id); }
+          show(id);
+          if(l.dataset.work){ showWork(l.dataset.work); }
+        });
+      });
+
+      window.addEventListener('popstate', function(){
+        show((location.hash || '#home').slice(1));
+      });
+
+      // graceful photo fallback (covers errors fired before this script ran)
+      var img = document.querySelector('.portrait__img');
+      if(img && img.complete && img.naturalWidth === 0){ img.style.display = 'none'; }
+
+      // scroll cue → smooth-scroll to the Recently section (no hash change)
+      var cue = document.querySelector('.scrolldown');
+      if(cue){
+        cue.addEventListener('click', function(e){
+          e.preventDefault();
+          var t = document.getElementById('recently');
+          if(t){ t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }
+        });
+      }
+
+      // form handling (contact + Halal Cart notify), works once a Formspree ID is added
+      Array.prototype.slice.call(document.querySelectorAll('form[data-form]')).forEach(function(form){
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          var status = form.querySelector('.form__status');
+          var action = form.getAttribute('action') || '';
+          function setStatus(msg, kind){
+            if(!status) return;
+            status.textContent = msg;
+            status.className = 'form__status' + (kind ? ' form__status--' + kind : '');
+          }
+          if(action.indexOf('YOUR_FORM_ID') !== -1 || !action){
+            setStatus('Almost there. Connect a form endpoint to start collecting responses.', 'warn');
+            return;
+          }
+          setStatus('Sending…', null);
+          fetch(action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+            .then(function(r){
+              if(r.ok){ form.reset(); setStatus('Thanks! You’re on the list.', 'ok'); }
+              else { setStatus('Something went wrong. Please try again.', 'warn'); }
+            })
+            .catch(function(){ setStatus('Something went wrong. Please try again.', 'warn'); });
+        });
+      });
+
+      // reel: play inline when hosted, open YouTube when run from a local file
+      (function(){
+        var reel = document.getElementById('reelEmbed');
+        if(!reel) return;
+        var btn = reel.querySelector('.reel-embed__btn');
+        if(!btn) return;
+        btn.addEventListener('click', function(){
+          var id = reel.getAttribute('data-yt');
+          if(location.protocol === 'file:'){
+            window.open('https://www.youtube.com/watch?v=' + id, '_blank', 'noopener');
+            return;
+          }
+          var f = document.createElement('iframe');
+          f.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1';
+          f.title = 'Jameel Shivji Acting Reel';
+          f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          f.setAttribute('allowfullscreen', '');
+          reel.innerHTML = '';
+          reel.appendChild(f);
+        });
+      })();
+
+      // initial route
+      show((location.hash || '#home').slice(1));
+    })();
+  </script>
+</body>
+</html>
